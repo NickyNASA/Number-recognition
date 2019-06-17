@@ -11,27 +11,33 @@ a = 1
 bias = 1
 
 weights = []
+l = 28*28 + 1
 
-for i in range (0, 28 * 28):
+for i in range (0, 28 * 28 + 1):
     weights.append(random.random())
 
 
-
 def Perceptron(inputs, output):
-    outputP = 0
+    outputP = bias * weights[l - 1]
     
-    for i in range (0, len(inputs)):
+    for i in range(0, len(inputs)):
+        print(weights[i])
         outputP += inputs[i] * weights[i]
+    
+    #print(outputP)
     
     error = output - outputP
     
-    for i in range(0, len(weights)):
-        print(weights[i])
+    for i in range(0, len(weights) - 1):
         weights[i] = weights[i] + (error * inputs[i] * a)
 
 
-for i in range(0, 10):#len(images)):
+for i in range(0, 2):#len(images)):
     x = images[i]
-    img = np.ravel(x) # np.reshape(x, (1, np.product(x.shape)))
+    img = np.ravel(x)
     Perceptron(img, expected[i])
-    print(weights[0])
+    print(str(i) + " = " + str(weights[0]))
+    
+
+
+print("Finished")
