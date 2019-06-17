@@ -15,31 +15,23 @@ weights = []
 for i in range (0, 28 * 28):
     weights.append(random.random())
 
-# print(len(weights))
-print(len(images))
-print(len(expected))
 
 
 def Perceptron(inputs, output):
     outputP = 0
     
-    l = len(inputs[0])
-    
     for i in range (0, len(inputs)):
-        for j in range(0, len(inputs[0])):
-            index = i*l + j
-            
-            outputP += inputs[index] * weights[index]
+        outputP += inputs[i] * weights[i]
     
     error = output - outputP
     
     for i in range(0, len(weights)):
-        weights[i] += error * inputs[i] * a
+        print(weights[i])
+        weights[i] = weights[i] + (error * inputs[i] * a)
 
 
-for i in range(0, 1):#len(images)):
+for i in range(0, 10):#len(images)):
     x = images[i]
     img = np.ravel(x) # np.reshape(x, (1, np.product(x.shape)))
-    print(x)
-    print(img)
-    #Perceptron(img[i], expected[i])
+    Perceptron(img, expected[i])
+    print(weights[0])
