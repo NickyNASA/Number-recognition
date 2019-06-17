@@ -1,2 +1,45 @@
+import numpy as np
+import random, os
+
+data = tensorflow.keras.datasets.mnist
+loaded = data.load_data()
+
+images = loaded[0][0]
+expected = loaded[0][1]
+
+a = 1
+bias = 1
+
+weights = []
+
+for i in range (0, 28 * 28):
+    weights.append(random.random())
+
+# print(len(weights))
+print(len(images))
+print(len(expected))
 
 
+def Perceptron(inputs, output):
+    outputP = 0
+    
+    l = len(inputs[0])
+    
+    for i in range (0, len(inputs)):
+        for j in range(0, len(inputs[0])):
+            index = i*l + j
+            
+            outputP += inputs[index] * weights[index]
+    
+    error = output - outputP
+    
+    for i in range(0, len(weights)):
+        weights[i] += error * inputs[i] * a
+
+
+for i in range(0, 1):#len(images)):
+    x = images[i]
+    img = np.ravel(x) # np.reshape(x, (1, np.product(x.shape)))
+    print(x)
+    print(img)
+    #Perceptron(img[i], expected[i])
